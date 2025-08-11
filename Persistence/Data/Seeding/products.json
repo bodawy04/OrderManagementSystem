@@ -1,0 +1,77 @@
+[
+  {
+    "name": "Wireless Mouse",
+    "price": 25.99,
+    "stock": 150
+  },
+  {
+    "name": "Mechanical Keyboard",
+    "price": 75.50,
+    "stock": 100
+  },
+  {
+    "name": "27-inch Monitor",
+    "price": 199.99,
+    "stock": 40
+  },
+  {
+    "name": "USB-C Hub",
+    "price": 45.00,
+    "stock": 200
+  },
+  {
+    "name": "External SSD 1TB",
+    "price": 129.95,
+    "stock": 60
+  },
+  {
+    "name": "Gaming Headset",
+    "price": 89.99,
+    "stock": 80
+  },
+  {
+    "name": "Laptop Stand",
+    "price": 35.00,
+    "stock": 120
+  },
+  {
+    "name": "Webcam HD 1080p",
+    "price": 49.99,
+    "stock": 75
+  },
+  {
+    "name": "Bluetooth Speaker",
+    "price": 59.90,
+    "stock": 90
+  },
+  {
+    "name": "Smartphone Charger",
+    "price": 19.99,
+    "stock": 300
+  },
+  {
+    "name": "Wireless Earbuds",
+    "price": 99.00,
+    "stock": 85
+  },
+  {
+    "name": "Graphic Tablet",
+    "price": 139.50,
+    "stock": 25
+  },
+  {
+    "name": "HDMI Cable 2m",
+    "price": 10.99,
+    "stock": 400
+  },
+  {
+    "name": "Smartwatch",
+    "price": 149.99,
+    "stock": 50
+  },
+  {
+    "name": "Portable Projector",
+    "price": 299.00,
+    "stock": 15
+  }
+]
