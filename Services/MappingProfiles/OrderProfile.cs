@@ -10,7 +10,8 @@ internal class OrderProfile : Profile
             .ForMember(dest => dest.Status
             , opts => opts.MapFrom(src => src.Status.ToString()))
             .ForMember(dest => dest.OrderId, opts => opts.MapFrom(src => src.Id))
-            .ForMember(dest => dest.CustomerName, opts => opts.MapFrom(src => src.Customer.Name));
+            .ForMember(dest => dest.CustomerName, opts => opts.MapFrom(src => src.Customer.Name))
+            .ReverseMap();
 
         CreateMap<CreateOrderDTO, Order>()
             .ForMember(dest => dest.PaymentMethod
@@ -23,7 +24,8 @@ internal class OrderProfile : Profile
         CreateMap<OrderItem, OrderItemDTO>()
             .ForMember(dest => dest.OrderItemId, opts => opts.MapFrom(src => src.Id))
             .ForMember(dest => dest.UnitPrice, opts => opts.MapFrom(src => src.Product.Price))
-            .ForMember(dest => dest.ProductName, opts => opts.MapFrom(src => src.Product.Name));
+            .ForMember(dest => dest.ProductName, opts => opts.MapFrom(src => src.Product.Name))
+            .ReverseMap();
 
         CreateMap<CreateOrderItemDTO, OrderItem>()
             .ForMember(dest => dest.Id, opts => opts.MapFrom(src => src.OrderItemId))

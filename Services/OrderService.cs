@@ -64,6 +64,7 @@ public class OrderService(IUnitOfWork unitOfWork, IMapper mapper) : IOrderServic
     {
         orderDto.Status = status;
         var order = mapper.Map<Order>(orderDto);
+        order.Customer = null!;
         unitOfWork.GetRepository<Order, int>().Update(order);
         int result = await unitOfWork.SaveChangesAsync();
         return result > 0 ?
