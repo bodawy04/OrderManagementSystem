@@ -5,6 +5,7 @@ namespace Presentation.Controllers;
 [ApiController]
 [Route("api/[controller]")]
 
-public class ApiController:ControllerBase
+public abstract class ApiController : ControllerBase
 {
+    protected string GetEmailFromToken() => User.FindFirst("Email")?.Value!;
 }

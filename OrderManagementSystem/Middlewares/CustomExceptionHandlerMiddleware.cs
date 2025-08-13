@@ -65,12 +65,3 @@ public class CustomExceptionHandlerMiddleware
         }
     }
 }
-public static class CustomExceptionHandlerMiddlewareExtensions
-{
-    public static IApplicationBuilder UseCustomExceptionMiddleware(this IApplicationBuilder app)
-    {
-        app.UseMiddleware<CustomExceptionHandlerMiddleware>();
-        return app;
-    }
-
-}

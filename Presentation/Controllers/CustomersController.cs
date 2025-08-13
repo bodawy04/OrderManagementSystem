@@ -6,11 +6,10 @@ namespace Presentation.Controllers;
 
 public class CustomersController(IServiceManager serviceManager):ApiController
 {
-    //[Authorize]
+    [Authorize]
     [HttpGet("{id}/orders")]
     public async Task<ActionResult<OrderDTO>> GetCustomerOrders(int id)
     {
-        //int customerId = int.Parse(User.FindFirst("CustomerId")?.Value!);
         var orders = await serviceManager.CustomerService.GetAllCustomerOrders(id);
         return Ok(orders);
     }
