@@ -2,7 +2,7 @@
 
 public class ServiceManager(IMapper mapper, IUnitOfWork unitOfWork,
     UserManager<ApplicationUser> userManager, IConfiguration configuration)
-    : IServiceManager
+
 {
     private readonly Lazy<IProductService> _lazyProductService =
         new Lazy<IProductService>(() => new ProductService(unitOfWork, mapper));
@@ -15,7 +15,7 @@ public class ServiceManager(IMapper mapper, IUnitOfWork unitOfWork,
     public IAuthenticationService AuthenticationService => _lazyAuthenticationService.Value;
 
     private readonly Lazy<IOrderService> _lazyOrderService =
-        new Lazy<IOrderService>(() => new OrderService(unitOfWork,mapper));
+        new Lazy<IOrderService>(() => new OrderService(unitOfWork, mapper));
 
     public IOrderService OrderService => _lazyOrderService.Value;
 
