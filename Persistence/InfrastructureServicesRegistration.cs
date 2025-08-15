@@ -1,4 +1,6 @@
-﻿namespace Persistence;
+﻿using StackExchange.Redis;
+
+namespace Persistence;
 
 public static class InfrastructureServicesRegistration
 {
@@ -7,7 +9,12 @@ public static class InfrastructureServicesRegistration
         services.AddDbContext<OrderIdentityDbContext>(options =>
             options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
         services.AddScoped<IDbInitializer, DbInitializer>();
+        services.AddScoped<ICacheRepository,CacheRepository>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();
+        services.AddSingleton<IConnectionMultiplexer>((_) =>
+        {
+            return ConnectionMultiplexer.Connect(configuration.GetConnectionString("RedisConnection")!);
+        });
         services.AddIdentityCore<ApplicationUser>()
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<OrderIdentityDbContext>();

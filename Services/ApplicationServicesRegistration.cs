@@ -8,6 +8,7 @@ public static class ApplicationServicesRegistration
     {
         //services.AddScoped<IServiceManager, ServiceManager>();
         services.AddScoped<IServiceManager, ServiceManagerWithFactoryDelegate>();
+        services.AddScoped<ICacheService,CacheService>();
 
         services.AddScoped<IProductService, ProductService>();
         services.AddScoped<Func<IProductService>>(provider=>provider.GetRequiredService<IProductService>);

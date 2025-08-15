@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using OrderManagementSystem.SharedDTO;
+using Presentation.Attributes;
 using Presentation.Controllers;
 using ServicesAbstractions;
 using Shared.DataTransferObjects.Products;
@@ -7,12 +8,14 @@ using Shared.DataTransferObjects.Products;
 public class ProductsController(IServiceManager serviceManager) : ApiController
 {
     [HttpGet]
+    [Cache(30)]
     public async Task<ActionResult<PaginatedResponse<ProductResponse>>> GetAllProducts([FromQuery] ProductQueryParameters queryParameters)
     {
         var products = await serviceManager.ProductService.GetAllProductsAsync(queryParameters);
         return Ok(products);
     }
     [HttpGet("{id}")]
+    [Cache(30)]
     public async Task<ActionResult<ProductResponse>> GetProduct(int id)
     {
         var product = await serviceManager.ProductService.GetProductByIdAsync(id);

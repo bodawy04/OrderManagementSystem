@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using OrderManagementSystem.SharedDTO;
 using OrderManagementSystem.SharedDTO.DataTransferObjects.Orders;
+using Presentation.Attributes;
 using ServicesAbstractions;
 
 namespace Presentation.Controllers;
@@ -9,25 +10,27 @@ public class OrdersController(IServiceManager serviceManager) : ApiController
 {
     [Authorize]
     [HttpGet("{id}")]
+    [Cache(30)]
     public async Task<ActionResult<OrderDTO>> Get(int id)
     {
         var order = await serviceManager.OrderService.GetOrderById(id);
         return Ok(order);
     }
-    [Authorize]
-    [HttpPost]
-    public async Task<ActionResult<ResponseDTO>> Create([FromBody]CreateOrderDTO orderDto)
-    {
-        int customerId = int.Parse(User.FindFirst("CustomerId")?.Value!);
-        var order = await serviceManager.OrderService.CreateOrder(orderDto, customerId);
-        return Ok(order);
-    }
     [Authorize(Roles = "Admin")]
     [HttpGet]
+    [Cache(30)]
     public async Task<ActionResult<IEnumerable<OrderDTO>>> GetAllOrders()
     {
         var orders = await serviceManager.OrderService.GetAllOrders();
         return Ok(orders);
+    }
+    [Authorize]
+    [HttpPost]
+    public async Task<ActionResult<ResponseDTO>> Create([FromBody] CreateOrderDTO orderDto)
+    {
+        int customerId = int.Parse(User.FindFirst("CustomerId")?.Value!);
+        var order = await serviceManager.OrderService.CreateOrder(orderDto, customerId);
+        return Ok(order);
     }
     [Authorize(Roles = "Admin")]
     [HttpPut("{id}/{status}")]
