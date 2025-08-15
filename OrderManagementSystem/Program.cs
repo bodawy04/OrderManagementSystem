@@ -10,7 +10,6 @@ builder.Services.AddSwaggerServices();
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddWebApplicationServices();
-
 builder.Services.ConfigureJWT(builder.Configuration);
 
 var app = builder.Build();
